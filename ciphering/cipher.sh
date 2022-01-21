@@ -13,14 +13,14 @@ if [ $firstpassword == $secondpassword ]; then \
 
 # Commande chiffrant et effaçant le fichier originel utilisant gpg
 gpg --symmetric --cipher-algo AES256 --quiet --batch \
---passphrase "$firstpassword" "$1" && shred -zu -n 3 "$1" || \
+--passphrase "$firstpassword" "$@" && shred -zu -n 3 "$@" || \
 
 # Chiffrement utilisant aescrypt
 #aescrypt -e -p "$firstpassword" "$1" && shred -zu -n 3 "$1" || \
 
 zenity --error --text "Une erreur est survenue lors du chiffrement." \
 		--title "Erreur"
-		
+
 # Suppression des variables stockant les mots de passe
 unset firstpassword
 unset secondpassword

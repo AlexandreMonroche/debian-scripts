@@ -28,7 +28,7 @@ gsettings set org.gnome.nautilus.preferences click-policy 'single'
 gsettings set org.gnome.nautilus.preferences show-delete-permanently true
 gsettings set org.gnome.gedit.preferences.editor tabs-size "uint32 4"
 # Set french keyboard layout
-gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'fr'), ('xkb', 'fr+mac')]"
+gsettings set org.gnome.desktop.input-sources sources "[('xkb', 'fr')]"
 
 echo
 echo "### Aliases configuration ###"
