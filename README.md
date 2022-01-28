@@ -8,6 +8,7 @@ Liste des possibles :
 - Installation de **Vagrant**
 - Installation de **Flatpak**
 - Configuration d'un système live
+- Ajout du chiffrement/déchiffrement dans le menu de Nautilus
 ---
 [EN] This repo contains scripts that works on a Debian based distribution
 List of what is possible :
@@ -18,3 +19,4 @@ List of what is possible :
 - Installation of **Vagrant**
 - Installation of **Flatpak**
 - Live system configuration
+- Add cipher/decipher options in Nautilus

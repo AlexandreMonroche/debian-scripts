@@ -1,20 +1,34 @@
 #! /bin/bash
 # Author : Alexandre Monroche
-# Description : Script bash de déchiffrement de fichier
-# Source : https://www.youtube.com/watch?v=MvJYgUJmYLY Paf LeGeek
-# Requirement : zenity, gpg or aescrypt
+# Description : Bash script to decipher selected file in Nautilus
+# Source : https://www.youtube.com/watch?v=MvJYgUJmYLY Paf LeGeek [FR]
+# Requirement : zenity; gpg or aescrypt
 
-# Récupération du mot de passe de déchiffrement
-password="$(zenity --password --title "Mot de passe")"
+# Get locales
+if [ $LANG == "fr_FR.UTF-8" ]; then
+	t_password="Mot de passe"
+	t_uncipher_error="Une erreur est survenue lors du déchiffrement. Merci de vérifier votre mot de passe."
+	t_error="Erreur"
+else
+	t_password="Password"
+	t_uncipher_error="An error occured during unciphering. Please check your password."
+	t_error="Error"
+fi
 
-# Commande déchiffrant et supprimant le fichier chiffré utilisant gpg
-gpg --batch --passphrase "$password" "$@" && rm "$@" || \
+# Get decipher password
+password="$(zenity --password --title "$t_password")"
 
-# Déchiffrement utilisant aescrypt
+# Decipher selected files and remove encrypted files
+for file in $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS
+do
+gpg --batch --passphrase "$password" "$file" && rm "$file" || \
+
+# Same with aescrypt
 #aescrypt -d -p $password $1 && rm $1 || \
 
-zenity --error --text "Une erreur est survenue lors du déchiffrement. Merci de vérifier votre mot de passe." \
-		--title "Erreur"
+zenity --error --text "$t_uncipher_error" \
+		--title "$t_error"
+done
 
-# Suppression de la variable stockant le mot de passe
+# Remove password variable from RAM
 unset password
