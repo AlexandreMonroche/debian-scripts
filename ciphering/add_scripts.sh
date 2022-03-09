@@ -2,8 +2,11 @@
 # Author : Alexandre Monroche
 # Description : Bash script installing cipher/uncipher scripts in Nautilus
 
+# Path variable
+path = "~/.local/share/nautilus/scripts"
+
 # Creating scripts directory if don't exist
-mkdir -p ~/.local/share/nautilus/scripts
+mkdir -p $path
 
 # Get locales
 if [ $LANG == "fr_FR.UTF-8" ]; then
@@ -15,9 +18,9 @@ else
 fi
 
 # Copy scripts to this directory
-cp cipher.sh ~/.local/share/nautilus/scripts/$ciphername
-cp uncipher.sh ~/.local/share/nautilus/scripts/$unciphername
+cp cipher.sh $path/$ciphername
+cp uncipher.sh $path/$unciphername
 
 # Modification of permissions
-chmod 700 ~/.local/share/nautilus/scripts/$ciphername
-chmod 700 ~/.local/share/nautilus/scripts/$unciphername
+chmod 700 $path/$ciphername
+chmod 700 $path/$unciphername
